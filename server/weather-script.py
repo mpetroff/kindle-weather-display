@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 
 # Kindle Weather Display
-# Matthew Petroff (http://www.mpetroff.net/)
+# Matthew Petroff (http://mpetroff.net/)
 # September 2012
 
 from xml.dom import minidom
@@ -14,6 +14,13 @@ except ImportError:
     # Python 2
     from urllib2 import urlopen
 
+#
+# Geographic location
+#
+
+latitude = 39.3286
+longitude = -76.6169
+
 
 
 #
@@ -21,7 +28,7 @@ except ImportError:
 #
 
 # Fetch data (change lat and lon to desired location)
-weather_xml = urlopen('http://graphical.weather.gov/xml/SOAP_server/ndfdSOAPclientByDay.php?whichClient=NDFDgenByDay&lat=39.3286&lon=-76.6169&format=24+hourly&numDays=4&Unit=e').read()
+weather_xml = urlopen('http://graphical.weather.gov/xml/SOAP_server/ndfdSOAPclientByDay.php?whichClient=NDFDgenByDay&lat=' + str(latitude) + '&lon=' + str(longitude) + '&format=24+hourly&numDays=4&Unit=e').read()
 dom = minidom.parseString(weather_xml)
 
 # Parse temperatures
