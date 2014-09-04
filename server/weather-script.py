@@ -4,10 +4,15 @@
 # Matthew Petroff (http://www.mpetroff.net/)
 # September 2012
 
-import urllib2
 from xml.dom import minidom
 import datetime
 import codecs
+try:
+    # Python 3
+    from urllib.request import urlopen
+except ImportError:
+    # Python 2
+    from urllib2 import urlopen
 
 
 
@@ -16,7 +21,7 @@ import codecs
 #
 
 # Fetch data (change lat and lon to desired location)
-weather_xml = urllib2.urlopen('http://graphical.weather.gov/xml/SOAP_server/ndfdSOAPclientByDay.php?whichClient=NDFDgenByDay&lat=39.3286&lon=-76.6169&format=24+hourly&numDays=4&Unit=e').read()
+weather_xml = urlopen('http://graphical.weather.gov/xml/SOAP_server/ndfdSOAPclientByDay.php?whichClient=NDFDgenByDay&lat=39.3286&lon=-76.6169&format=24+hourly&numDays=4&Unit=e').read()
 dom = minidom.parseString(weather_xml)
 
 # Parse temperatures
